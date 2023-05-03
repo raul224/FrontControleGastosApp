@@ -3,10 +3,14 @@
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-h1 {
+.textCenter {
   text-align: center;
+}
+
+.uiCard {
+  background-color: #252525;
+  color: #fff;
 }

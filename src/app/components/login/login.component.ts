@@ -1,6 +1,6 @@
-import { LoginService } from './../../services/login/login.service';
+import { AutenticationService } from '../../services/autentication/autentication.service';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { loginModel } from 'src/app/models/loginModel';
 
 @Component({
   selector: 'app-login',
@@ -8,18 +8,26 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  loginModel: loginModel = new loginModel();
+
   constructor(
-    private LoginService: LoginService
+    private autenticationService: AutenticationService
   ){}
 
-  loginForm = new FormGroup({
-    userName: new FormControl(''),
-    password: new FormControl('')
-  });
+  submitLogin(): void {
+    this.autenticationService
+      .autenticationRequest(this.loginModel)
+      .subscribe({
+        next:(response) => {
+          console.log(response)
+        },
+        error: (error) =>{
+          alert(error)
+        }
+      });
+  }
 
-  async onSubmit(): Promise<void>{
-    console.log("Bateu");
-    console.log()
-    //await this.loginService.autenticationRequest();
+  registerPage(): void{
+
   }
 }
