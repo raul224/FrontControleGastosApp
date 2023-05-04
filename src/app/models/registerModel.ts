@@ -1,11 +1,13 @@
 export class RegisterModel{
-  nome : string;
-  email : string;
-  senha : string;
+  name: string;
+  email: string;
+  password: string;
+  passwordValidation: string;
 
   constructor(){
-    this.nome = '',
+    this.name = '',
     this.email = '',
-    this.senha = ''
+    this.password = '',
+    this.passwordValidation = ''
   }
 }

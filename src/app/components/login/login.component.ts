@@ -1,6 +1,8 @@
 import { AutenticationService } from '../../services/autentication/autentication.service';
 import { Component } from '@angular/core';
 import { loginModel } from 'src/app/models/loginModel';
+import {SweetAlertService} from "../../services/sweetAlert/sweet-alert.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,9 @@ export class LoginComponent {
   loginModel: loginModel = new loginModel();
 
   constructor(
-    private autenticationService: AutenticationService
+    private autenticationService: AutenticationService,
+    private sweetAlertService: SweetAlertService,
+    private router: Router
   ){}
 
   submitLogin(): void {
@@ -19,15 +23,16 @@ export class LoginComponent {
       .autenticationRequest(this.loginModel)
       .subscribe({
         next:(response) => {
-          console.log(response)
+          this.sweetAlertService.sucesses("Sucesses",response);
+          this.router.navigate(["home"]);
         },
         error: (error) =>{
-          alert(error)
+          this.sweetAlertService.failure("Error", error);
         }
       });
   }
 
   registerPage(): void{
-
+    this.router.navigate(["register"]);
   }
 }
