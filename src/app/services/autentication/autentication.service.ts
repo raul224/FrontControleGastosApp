@@ -8,12 +8,12 @@ import { RegisterModel } from 'src/app/models/registerModel';
   providedIn: 'root'
 })
 export class AutenticationService {
-  url: string = 'http://localhost:8080';
+  url: string = 'https://localhost:7172/Autentication';
 
   constructor(private httpClient: HttpClient){ }
 
   autenticationRequest(loginModel: loginModel) : Observable<any> {
-    return this.httpClient.post(this.url + '/login', loginModel);
+    return this.httpClient.post(this.url, loginModel);
   }
 
   registerRequest(registerModel : RegisterModel) : Observable<any> {

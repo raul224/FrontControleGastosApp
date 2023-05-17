@@ -23,7 +23,7 @@ export class LoginComponent {
       .autenticationRequest(this.loginModel)
       .subscribe({
         next:(response) => {
-          this.sweetAlertService.sucesses("Sucesses",response);
+          localStorage.setItem("usuario", response)
           this.router.navigate(["home"]);
         },
         error: (error) =>{

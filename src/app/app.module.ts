@@ -12,6 +12,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import {ToolbarModule} from "primeng/toolbar";
 
 @NgModule({
   declarations: [
@@ -20,17 +21,18 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     RegisterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    CardModule,
-    ButtonModule,
-    InputTextModule,
-    MenubarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        CardModule,
+        ButtonModule,
+        InputTextModule,
+        MenubarModule,
+        ToolbarModule
+    ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })

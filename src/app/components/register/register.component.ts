@@ -21,13 +21,17 @@ export class RegisterComponent {
     this.autenticationService.registerRequest(this.registerModel)
       .subscribe({
         next:(response) => {
-          this.sweetAlertService.sucesses("Sucesses",response);
-          localStorage.setItem("user", response);
+          alert("Login realizado com sucesso");
+          localStorage.setItem("usuario", response);
           this.router.navigate(["home"]);
         },
         error:(error) => {
-          this.sweetAlertService.failure("Error", error);
+          alert("Falha ao logar " + error.toString())
         }
       })
+  }
+
+  loginPage(): void{
+    this.router.navigate([""]);
   }
 }
