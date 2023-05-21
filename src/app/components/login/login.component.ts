@@ -22,14 +22,14 @@ export class LoginComponent {
     this.autenticationService
       .autenticationRequest(this.loginModel)
       .subscribe({
-        next:(response) => {
-          localStorage.setItem("usuario", response)
-          this.router.navigate(["home"]);
-        },
-        error: (error) =>{
-          this.sweetAlertService.failure("Error", error);
-        }
-      });
+      next:(response) => {
+        localStorage.setItem("usuario", JSON.stringify(response))
+        this.router.navigate(["home"]);
+      },
+      error: (error) =>{
+        alert(error.error());
+      }
+    });
   }
 
   registerPage(): void{

@@ -1,0 +1,71 @@
+<p-toolbar class="header">
+  <div class="p-toolbar-group-start">
+    <span>
+      <i class="pi pi-prime" style="font-size: 2rem"></i>
+      <a>Controle de Gastos</a>
+    </span>
+    <span *ngIf="logado">
+      <i class="pi pi-search" style="font-size: 2rem"></i>
+      <a>Consultar lançamentos</a>
+    </span>
+  </div>
+  <div class="p-toolbar-group-end">
+    <span *ngIf="logado">
+      <p-button (click)="show()">
+        <i class="pi pi-sign-out" style="font-size: 2rem"></i>
+      </p-button>
+    </span>
+  </div>
+</p-toolbar>
+<div class="justify-content-center grid card">
+  <div class="col-12 sm:col-6 md:col-4">
+    <p-card>
+      <div class="grid">
+        <div class="col-12">
+          <h2>Cadastro de lançamentos</h2>
+        </div>
+        <div class="col-12">
+          <div class="col-12">
+            <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-list"></i>
+            </span>
+              <input [(ngModel)]="lancamentoCadastro.Descricao" pInputText id="descricao" type="text" placeholder="Descricao"/>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-money-bill"></i>
+            </span>
+              <input [(ngModel)]="lancamentoCadastro.ValorLancamento" pInputText id="valor" type="number" placeholder="Valor"/>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-calendar"></i>
+            </span>
+              <input [(ngModel)]="lancamentoCadastro.DataLancamento" pInputText id="date" type="date" placeholder="Date"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <p-button pRipple label="Cadastrar" icon="pi pi-plus"
+            (click)="CadastraLancamento()" class="w-full border-round">
+            </p-button>
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+  <div class="col-12 sm:col-6 md:col-4" *ngFor="let lancamento of lancamentos">
+    <p-card header="{{lancamento.Descricao}}">
+      <div class="grid">
+        <div class="col 6">
+          <p class="m-0">{{lancamento.ValorLancamento}}</p>
+          <p class="m-0">{{lancamento.DataLancamento}}</p>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>

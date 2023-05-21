@@ -13,13 +13,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ToolbarModule} from "primeng/toolbar";
+import { ConsultaAnteriorComponent } from './components/DialogComponents/consulta-anterior/consulta-anterior.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConsultaAnteriorComponent
   ],
     imports: [
         BrowserModule,

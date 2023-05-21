@@ -1,18 +1,1 @@
-<p-toolbar class="header">
-  <div class="p-toolbar-group-start">
-    <span>
-      <i class="pi pi-prime" style="font-size: 2rem"></i>
-      <a>Controle de Gastos</a>
-    </span>
-    <span *ngIf="logado">
-      <i class="pi pi-search" style="font-size: 2rem"></i>
-      <a (click)="consultarLancamentos()">Consultar lançamentos</a>
-    </span>
-  </div>
-  <div class="p-toolbar-group-end">
-    <span *ngIf="logado">
-      <i class="pi pi-sign-out" style="font-size: 2rem"></i>
-    </span>
-  </div>
-</p-toolbar>
 <router-outlet></router-outlet>

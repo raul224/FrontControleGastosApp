@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { loginModel } from 'src/app/models/loginModel';
 import { RegisterModel } from 'src/app/models/registerModel';
+import {UsuarioModel} from "../../models/UsuarioModel";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class AutenticationService {
 
   constructor(private httpClient: HttpClient){ }
 
-  autenticationRequest(loginModel: loginModel) : Observable<any> {
-    return this.httpClient.post(this.url, loginModel);
+  autenticationRequest(loginModel: loginModel) : Observable<UsuarioModel> {
+    return this.httpClient.post<UsuarioModel>(this.url, loginModel);
   }
 
-  registerRequest(registerModel : RegisterModel) : Observable<any> {
-    return this.httpClient.post(this.url + '/register', registerModel);
+  registerRequest(registerModel : RegisterModel) : Observable<UsuarioModel> {
+    return this.httpClient.post<UsuarioModel>(this.url + '/register', registerModel);
   }
 }
