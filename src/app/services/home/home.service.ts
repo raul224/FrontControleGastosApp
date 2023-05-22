@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {DataPesquisaModel} from "../../models/DataPesquisaModel";
+import {DataRangeModel} from "../../models/DataRangeModel";
 import {LancamentoModel} from "../../models/LancamentoModel";
 import {LancamentoCadastroModel} from "../../models/LancamentoCadastroModel";
 
@@ -13,7 +13,7 @@ export class HomeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  GetLancamentosAnteriores(dataPesquisaModel: DataPesquisaModel): Observable<any>{
+  GetLancamentosAnteriores(dataPesquisaModel: DataRangeModel): Observable<any>{
     return this.httpClient.post(this.url + "/Anterior", dataPesquisaModel)
   }
 

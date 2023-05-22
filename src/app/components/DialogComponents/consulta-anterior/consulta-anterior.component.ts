@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {HomeService} from "../../../services/home/home.service";
-import {Router} from "@angular/router";
+import {UsuarioModel} from "../../../models/UsuarioModel";
+import {DataRangeModel} from "../../../models/DataRangeModel";
 
 @Component({
   selector: 'app-consulta-anterior',
@@ -10,23 +11,29 @@ import {Router} from "@angular/router";
   providers: [DynamicDialogRef]
 })
 export class ConsultaAnteriorComponent implements OnInit{
+  usuario: UsuarioModel = new UsuarioModel()
+  dataRange: DataRangeModel = new DataRangeModel()
+
   ngOnInit(): void {
+    this.usuario = this.config.data.usuario
   }
-  logado: boolean = false;
 
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private homeService: HomeService,
-    private router: Router) {}
+    private homeService: HomeService,) {}
 
   consultarLancamentos(): any{
-    if(this.logado){
-      var usuario = localStorage.getItem("usuario");
+    this.dataRange.UsuarioId = this.usuario.Id
 
-    } else {
-      alert("Por favor, efetuar o login")
-      this.router.navigate([""])
-    }
+    this.homeService.GetLancamentosAnteriores(this.dataRange)
+      .subscribe({
+      next:(response) => {
+        this.ref.close()
+      },
+      error:(error) => {
+        alert("Erro na consulta, tente novamente")
+      }})
+
   }
 }

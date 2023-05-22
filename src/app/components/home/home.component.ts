@@ -39,6 +39,8 @@ export class HomeComponent implements OnInit{
 
   show(){
     this.ref = this.dialogService.open(ConsultaAnteriorComponent, {
+      header: "Consulta dados anteriores",
+      width: '70%',
       data: {
         usuario: this.usuario
       }
