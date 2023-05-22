@@ -59,8 +59,13 @@ export class HomeComponent implements OnInit{
   CadastraLancamento(): any{
     this.lancamentoCadastro.UsuarioId = this.usuario.Id
 
-    // Logica de criar um lancamentos e recarregar os lancamentos
-
-    this.CarregarLancamentos()
+    this.homeService.CadastraLancamento(this.lancamentoCadastro)
+      .subscribe({
+      next:(response) =>{
+        this.CarregarLancamentos()
+      },
+      error:(error) =>{
+        alert("Erro no cadastro do lancamento, tente novamente")
+      }})
   }
 }

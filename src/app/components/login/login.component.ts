@@ -1,7 +1,6 @@
 import { AutenticationService } from '../../services/autentication/autentication.service';
 import { Component } from '@angular/core';
 import { loginModel } from 'src/app/models/loginModel';
-import {SweetAlertService} from "../../services/sweetAlert/sweet-alert.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -14,7 +13,6 @@ export class LoginComponent {
 
   constructor(
     private autenticationService: AutenticationService,
-    private sweetAlertService: SweetAlertService,
     private router: Router
   ){}
 
