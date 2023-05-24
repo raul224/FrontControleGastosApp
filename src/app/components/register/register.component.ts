@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {AutenticationService} from "../../services/autentication/autentication.service";
-import {SweetAlertService} from "../../services/sweetAlert/sweet-alert.service";
 import {RegisterModel} from "../../models/registerModel";
 
 @Component({
@@ -14,7 +13,6 @@ export class RegisterComponent {
 
   constructor(
     private autenticationService: AutenticationService,
-    private sweetAlertService: SweetAlertService,
     private router: Router){}
 
   submitRegister(): void{

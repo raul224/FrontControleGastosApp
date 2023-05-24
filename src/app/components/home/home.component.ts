@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit{
     var usuarioLogado = JSON.parse(localStorage.getItem("usuario") || "")
     console.log(usuarioLogado)
     if(usuarioLogado){
+      this.logado = true
       this.usuario = usuarioLogado
       this.CarregarLancamentos()
     }else {
