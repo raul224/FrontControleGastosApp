@@ -8,6 +8,7 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +36,7 @@ import { ConsultaAnteriorComponent } from './components/DialogComponents/consult
         MenubarModule,
         ToolbarModule
     ],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule, provideAnimations()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

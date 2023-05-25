@@ -5,7 +5,7 @@
       <a>Controle de Gastos</a>
     </span>
     <span *ngIf="logado">
-      <p-button class="consultarBtn" (click)="show()">
+      <p-button class="consultarBtn" (click)="ConsultaAnteriorDialog()">
         <i class="pi pi-search" style="font-size: 1rem"></i>
         <a>Consultar lançamentos</a>
       </p-button>
@@ -13,7 +13,7 @@
   </div>
   <div class="p-toolbar-group-end">
     <span *ngIf="logado">
-      <p-button>
+      <p-button (click)="Sair()">
         <i class="pi pi-sign-out" style="font-size: 1rem"></i>
       </p-button>
     </span>

@@ -26,11 +26,11 @@ export class HomeComponent implements OnInit{
   public dialogService: DialogService) {}
 
   ngOnInit(): void {
-    var usuarioLogado = JSON.parse(localStorage.getItem("usuario") || "")
-    console.log(usuarioLogado)
-    if(usuarioLogado){
+    this.usuario = JSON.parse(localStorage.getItem("usuario") || "")
+
+    console.log("Usuario logado" + this.usuario.Name)
+    if(this.usuario){
       this.logado = true
-      this.usuario = usuarioLogado
       this.CarregarLancamentos()
     }else {
       alert("Por favor, efetuar o login")
@@ -38,10 +38,13 @@ export class HomeComponent implements OnInit{
     }
   }
 
-  show(){
+  ConsultaAnteriorDialog(){
     this.ref = this.dialogService.open(ConsultaAnteriorComponent, {
-      header: "Consulta dados anteriores",
-      width: '70%',
+      header: "Consultar dados anteriores",
+      width: '60%',
+      contentStyle: {"overflow": "auto"},
+      baseZIndex: 10000,
+      maximizable: false,
       data: {
         usuario: this.usuario
       }
@@ -70,5 +73,10 @@ export class HomeComponent implements OnInit{
       error:(error) =>{
         alert("Erro no cadastro do lancamento, tente novamente")
       }})
+  }
+
+  Sair(): any{
+    localStorage.removeItem("usuario");
+    this.router.navigate([""])
   }
 }

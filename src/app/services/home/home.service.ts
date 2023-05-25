@@ -18,7 +18,7 @@ export class HomeService {
   }
 
   GetLancamentos(id: string): Observable<LancamentoModel[]>{
-    var params = new HttpParams().append("id", id)
+    var params = new HttpParams().set("id", id)
     return this.httpClient.get<LancamentoModel[]>(this.url,
     {
       params: params
