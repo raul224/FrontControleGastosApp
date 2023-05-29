@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {HomeService} from "../../services/home/home.service";
 import {Router} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
-import {ConsultaAnteriorComponent} from "../DialogComponents/consulta-anterior/consulta-anterior.component";
-import {LancamentoCadastroModel} from "../../models/LancamentoCadastroModel";
-import {UsuarioModel} from "../../models/UsuarioModel";
-import {LancamentoModel} from "../../models/LancamentoModel";
+import {FlowPreviewComponent} from "../DialogComponents/consulta-anterior/flow-preview.component";
+import { flowCadastroModel } from "../../models/flowCadastroModel";
+import { userModel } from "../../models/userModel";
+import { flowModel } from "../../models/flowModel";
 
 @Component({
   selector: 'app-home',
@@ -13,46 +13,36 @@ import {LancamentoModel} from "../../models/LancamentoModel";
   styleUrls: ['./home.component.css'],
   providers: [DialogService]
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent{
   logado: boolean = false;
-  lancamentoCadastro: LancamentoCadastroModel = new LancamentoCadastroModel();
-  usuario: UsuarioModel = new UsuarioModel();
-  lancamentos: LancamentoModel[] = []
+  lancamentoCadastro: flowCadastroModel = new flowCadastroModel();
+  user: userModel = new userModel();
+  lancamentos: flowModel[] = []
   ref: DynamicDialogRef | undefined;
 
   constructor(
   private homeService: HomeService,
   private router: Router,
-  public dialogService: DialogService) {}
-
-  ngOnInit(): void {
-    this.usuario = JSON.parse(localStorage.getItem("usuario") || "")
-
-    console.log("Usuario logado" + this.usuario.Name)
-    if(this.usuario){
-      this.logado = true
-      this.CarregarLancamentos()
-    }else {
-      alert("Por favor, efetuar o login")
-      this.router.navigate([""])
-    }
+  public dialogService: DialogService) {
+    this.user = JSON.parse(sessionStorage.getItem("usuario") || "")
+    this.CarregarLancamentos()
   }
 
   ConsultaAnteriorDialog(){
-    this.ref = this.dialogService.open(ConsultaAnteriorComponent, {
+    this.ref = this.dialogService.open(FlowPreviewComponent, {
       header: "Consultar dados anteriores",
       width: '60%',
       contentStyle: {"overflow": "auto"},
       baseZIndex: 10000,
       maximizable: false,
       data: {
-        usuario: this.usuario
+        usuario: this.user
       }
     })
   }
 
   private CarregarLancamentos(): any{
-    this.homeService.GetLancamentos(this.usuario.Id)
+    this.homeService.GetLancamentos(this.user.Id)
       .subscribe({
       next:(response) => {
         this.lancamentos.concat(response)
@@ -63,7 +53,7 @@ export class HomeComponent implements OnInit{
   }
 
   CadastraLancamento(): any{
-    this.lancamentoCadastro.UsuarioId = this.usuario.Id
+    this.lancamentoCadastro.UsuarioId = this.user.Id
 
     this.homeService.CadastraLancamento(this.lancamentoCadastro)
       .subscribe({
@@ -76,7 +66,7 @@ export class HomeComponent implements OnInit{
   }
 
   Sair(): any{
-    localStorage.removeItem("usuario");
-    this.router.navigate([""])
+    sessionStorage.clear()
+    this.router.navigate(["login"])
   }
 }

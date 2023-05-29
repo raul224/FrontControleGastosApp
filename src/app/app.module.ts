@@ -8,34 +8,35 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, provideAnimations} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {ToolbarModule} from "primeng/toolbar";
-import { ConsultaAnteriorComponent } from './components/DialogComponents/consulta-anterior/consulta-anterior.component';
+import { FlowPreviewComponent } from './components/DialogComponents/consulta-anterior/flow-preview.component';
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CardModule,
+    ButtonModule,
+    InputTextModule,
+    MenubarModule,
+    ToolbarModule
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    ConsultaAnteriorComponent
+    FlowPreviewComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        CardModule,
-        ButtonModule,
-        InputTextModule,
-        MenubarModule,
-        ToolbarModule
-    ],
   providers: [HttpClientModule, provideAnimations()],
   bootstrap: [AppComponent]
 })

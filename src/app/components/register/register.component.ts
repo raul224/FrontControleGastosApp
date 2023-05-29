@@ -20,16 +20,16 @@ export class RegisterComponent {
       .subscribe({
         next:(response) => {
           alert("Login realizado com sucesso")
-          localStorage.setItem("usuario", JSON.stringify(response))
-          this.router.navigate(["home"])
+          sessionStorage.setItem("usuario", JSON.stringify(response))
+          this.router.navigate([""])
         },
         error:(error) => {
-          alert("Falha ao logar " + error.toString())
+          alert("Falha ao registrar")
         }
       })
   }
 
   loginPage(): void{
-    this.router.navigate([""])
+    this.router.navigate(["login"])
   }
 }

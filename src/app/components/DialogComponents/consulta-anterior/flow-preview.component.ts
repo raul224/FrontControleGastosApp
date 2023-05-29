@@ -1,27 +1,25 @@
 import {Component, OnInit} from '@angular/core';
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {HomeService} from "../../../services/home/home.service";
-import {UsuarioModel} from "../../../models/UsuarioModel";
-import {DataRangeModel} from "../../../models/DataRangeModel";
+import { userModel } from "../../../models/userModel";
+import { dataRangeModel } from "../../../models/dataRangeModel";
 
 @Component({
   selector: 'app-consulta-anterior',
-  templateUrl: './consulta-anterior.component.html',
-  styleUrls: ['./consulta-anterior.component.css'],
+  templateUrl: './flow-preview.component.html',
+  styleUrls: ['./flow-preview.component.css'],
   providers: [DynamicDialogRef]
 })
-export class ConsultaAnteriorComponent implements OnInit{
-  usuario: UsuarioModel = new UsuarioModel()
-  dataRange: DataRangeModel = new DataRangeModel()
-
-  ngOnInit(): void {
-    this.usuario = this.config.data.usuario
-  }
+export class FlowPreviewComponent {
+  usuario: userModel = new userModel()
+  dataRange: dataRangeModel = new dataRangeModel()
 
   constructor(
     public ref: DynamicDialogRef,
     public config: DynamicDialogConfig,
-    private homeService: HomeService,) {}
+    private homeService: HomeService,) {
+      this.usuario = this.config.data.usuario
+    }
 
   consultarLancamentos(): any{
     this.dataRange.UsuarioId = this.usuario.Id

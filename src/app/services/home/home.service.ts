@@ -1,31 +1,27 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {DataRangeModel} from "../../models/DataRangeModel";
-import {LancamentoModel} from "../../models/LancamentoModel";
-import {LancamentoCadastroModel} from "../../models/LancamentoCadastroModel";
+import { dataRangeModel } from "../../models/dataRangeModel";
+import { flowModel } from "../../models/flowModel";
+import { flowCadastroModel } from "../../models/flowCadastroModel";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
-  url: string = 'https://localhost:7172/ControleGastos/Lancamentos';
+  url: string = 'https://localhost:7172/Balance/Flows';
 
   constructor(private httpClient: HttpClient) { }
 
-  GetLancamentosAnteriores(dataPesquisaModel: DataRangeModel): Observable<any>{
-    return this.httpClient.post(this.url + "/Anterior", dataPesquisaModel)
+  GetLancamentosAnteriores(dataRangeModel: dataRangeModel): Observable<any>{
+    return this.httpClient.post(this.url + "/Preview", dataRangeModel)
   }
 
-  GetLancamentos(id: string): Observable<LancamentoModel[]>{
-    var params = new HttpParams().set("id", id)
-    return this.httpClient.get<LancamentoModel[]>(this.url,
-    {
-      params: params
-    })
+  GetLancamentos(id: string): Observable<flowModel[]>{
+    return this.httpClient.get<flowModel[]>(this.url + "?userId=" + id)
   }
 
-  CadastraLancamento(lancamentoCadastro: LancamentoCadastroModel): Observable<any>{
-    return this.httpClient.post(this.url, lancamentoCadastro)
+  CadastraLancamento(flowCadastro: flowCadastroModel): Observable<any>{
+    return this.httpClient.post(this.url, flowCadastro)
   }
 }
