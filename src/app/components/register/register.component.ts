@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {AutenticationService} from "../../services/autentication/autentication.service";
 import {RegisterModel} from "../../models/registerModel";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -13,23 +14,36 @@ export class RegisterComponent {
 
   constructor(
     private autenticationService: AutenticationService,
-    private router: Router){}
+    private router: Router,
+    private builder: FormBuilder){}
+
+  registerForm = this.builder.group({
+    email: this.builder.control('', Validators.compose([Validators.required, Validators.email])),
+    name: this.builder.control('', Validators.required),
+    password: this.builder.control('', Validators.required),
+    passwordValidation: this.builder.control('', Validators.required)
+  })
 
   submitRegister(): void{
-    this.autenticationService.registerRequest(this.registerModel)
-      .subscribe({
-        next:(response) => {
-          alert("Login realizado com sucesso")
-          sessionStorage.setItem("usuario", JSON.stringify(response))
-          this.router.navigate([""])
-        },
-        error:(error) => {
-          alert("Falha ao registrar")
-        }
-      })
-  }
+    if(this.registerForm.valid){
+      this.registerModel.Email = this.registerForm.value.email || ""
+      this.registerModel.Name = this.registerForm.value.name || ""
+      this.registerModel.Password = this.registerForm.value.password || ""
+      this.registerModel.PasswordValidation = this.registerForm.value.passwordValidation || ""
 
-  loginPage(): void{
-    this.router.navigate(["login"])
+      this.autenticationService.registerRequest(this.registerModel)
+        .subscribe({
+          next:(response) => {
+            sessionStorage.setItem("usuario", JSON.stringify(response))
+            alert("Login realizado com sucesso")
+            this.router.navigate([""])
+          },
+          error:(error) => {
+            alert("Falha ao registrar")
+          }
+        })
+    } else {
+      alert("Por favor, adicionar os dados necessários")
+    }
   }
 }

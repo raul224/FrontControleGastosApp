@@ -27,6 +27,11 @@ export class LoginComponent {
 
   submitLogin(): void {
     if(this.loginForm.valid){
+      var email = this.loginForm.value.email
+      var password = this.loginForm.value.password
+      this.loginModel.Email = email || ""
+      this.loginModel.Password = password || ""
+
       this.autenticationService
         .autenticationRequest(this.loginModel)
         .subscribe({
@@ -35,7 +40,7 @@ export class LoginComponent {
             this.router.navigate([""]);
           },
           error: (error) =>{
-            alert(error.error());
+            alert("Login não encontrado");
           }
         });
     }else {
