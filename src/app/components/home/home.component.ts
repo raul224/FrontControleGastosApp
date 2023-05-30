@@ -24,7 +24,7 @@ export class HomeComponent{
   private homeService: HomeService,
   private router: Router,
   public dialogService: DialogService) {
-    this.user = JSON.parse(sessionStorage.getItem("usuario") || "")
+    this.user = JSON.parse(localStorage.getItem("usuario") || "")
     this.CarregarLancamentos()
   }
 
@@ -66,7 +66,7 @@ export class HomeComponent{
   }
 
   Sair(): any{
-    sessionStorage.clear()
+    localStorage.clear()
     this.router.navigate(["login"])
   }
 }

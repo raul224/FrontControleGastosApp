@@ -34,7 +34,8 @@ export class RegisterComponent {
       this.autenticationService.registerRequest(this.registerModel)
         .subscribe({
           next:(response) => {
-            sessionStorage.setItem("usuario", JSON.stringify(response))
+            console.log(response)
+            localStorage.setItem("usuario", JSON.stringify(response))
             alert("Login realizado com sucesso")
             this.router.navigate([""])
           },

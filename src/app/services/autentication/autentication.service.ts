@@ -13,15 +13,15 @@ export class AutenticationService {
 
   constructor(private httpClient: HttpClient){ }
 
-  autenticationRequest(loginModel: loginModel) : Observable<userModel> {
-    return this.httpClient.post<userModel>(this.url, loginModel);
+  autenticationRequest(loginModel: loginModel) : Observable<any> {
+    return this.httpClient.post(this.url, loginModel);
   }
 
-  registerRequest(registerModel : RegisterModel) : Observable<userModel> {
-    return this.httpClient.post<userModel>(this.url + '/register', registerModel);
+  registerRequest(registerModel : RegisterModel) : Observable<any> {
+    return this.httpClient.post(this.url + '/register', registerModel);
   }
 
   isUserAutenticated(): string{
-    return sessionStorage.getItem("usuario") || ""
+    return localStorage.getItem("usuario") || ""
   }
 }

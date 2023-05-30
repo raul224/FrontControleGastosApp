@@ -17,7 +17,6 @@ export class LoginComponent {
     private router: Router,
     private builder: FormBuilder
   ){
-    sessionStorage.clear()
   }
 
   loginForm = this.builder.group({
@@ -36,7 +35,8 @@ export class LoginComponent {
         .autenticationRequest(this.loginModel)
         .subscribe({
           next:(response) => {
-            sessionStorage.setItem("usuario", JSON.stringify(response))
+            console.log(response)
+            localStorage.setItem("usuario", JSON.stringify(response))
             this.router.navigate([""]);
           },
           error: (error) =>{
