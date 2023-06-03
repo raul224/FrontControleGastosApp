@@ -6,11 +6,10 @@ export const AuthGuard = () => {
   const autenticationService = inject(AutenticationService)
   const router = inject(Router)
 
-  if(autenticationService.isUserAutenticated() !== ""){
-    router.navigate([""])
+  if(autenticationService.isUserAutenticated() !== null){
     return true;
   }
+
   router.navigate(["login"])
   return false;
-
 }

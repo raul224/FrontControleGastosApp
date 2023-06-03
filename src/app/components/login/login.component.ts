@@ -16,8 +16,7 @@ export class LoginComponent {
     private autenticationService: AutenticationService,
     private router: Router,
     private builder: FormBuilder
-  ){
-  }
+  ){}
 
   loginForm = this.builder.group({
     email: this.builder.control('', Validators.compose([Validators.required, Validators.email])),
@@ -35,9 +34,8 @@ export class LoginComponent {
         .autenticationRequest(this.loginModel)
         .subscribe({
           next:(response) => {
-            console.log(response)
-            localStorage.setItem("usuario", JSON.stringify(response))
-            this.router.navigate([""]);
+            sessionStorage.setItem('usuario', JSON.stringify(response))
+            this.router.navigate(["home"]);
           },
           error: (error) =>{
             alert("Login não encontrado");

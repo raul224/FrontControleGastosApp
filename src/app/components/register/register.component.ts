@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {AutenticationService} from "../../services/autentication/autentication.service";
 import {RegisterModel} from "../../models/registerModel";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";;
 
 @Component({
   selector: 'app-register',
@@ -32,18 +32,17 @@ export class RegisterComponent {
       this.registerModel.PasswordValidation = this.registerForm.value.passwordValidation || ""
 
       this.autenticationService.registerRequest(this.registerModel)
-        .subscribe({
+        .subscribe( {
           next:(response) => {
-            console.log(response)
-            localStorage.setItem("usuario", JSON.stringify(response))
+            sessionStorage.setItem("usuario", JSON.stringify(response))
             alert("Login realizado com sucesso")
-            this.router.navigate([""])
+            this.router.navigate(["home"])
           },
           error:(error) => {
             alert("Falha ao registrar")
           }
         })
-    } else {
+      }else {
       alert("Por favor, adicionar os dados necessários")
     }
   }

@@ -6,6 +6,9 @@ import {FlowPreviewComponent} from "../DialogComponents/consulta-anterior/flow-p
 import { flowCadastroModel } from "../../models/flowCadastroModel";
 import { userModel } from "../../models/userModel";
 import { flowModel } from "../../models/flowModel";
+import {tap} from "rxjs";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {resolve} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-home',
@@ -13,18 +16,18 @@ import { flowModel } from "../../models/flowModel";
   styleUrls: ['./home.component.css'],
   providers: [DialogService]
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit{
   logado: boolean = false;
   lancamentoCadastro: flowCadastroModel = new flowCadastroModel();
   user: userModel = new userModel();
   lancamentos: flowModel[] = []
   ref: DynamicDialogRef | undefined;
-
   constructor(
   private homeService: HomeService,
-  private router: Router,
-  public dialogService: DialogService) {
-    this.user = JSON.parse(localStorage.getItem("usuario") || "")
+  public dialogService: DialogService) {}
+
+  ngOnInit(): void {
+    this.user = JSON.parse(<string>sessionStorage.getItem("usuario"))
     this.CarregarLancamentos()
   }
 
@@ -42,14 +45,16 @@ export class HomeComponent{
   }
 
   private CarregarLancamentos(): any{
+    console.log(this.user.Id)
     this.homeService.GetLancamentos(this.user.Id)
-      .subscribe({
-      next:(response) => {
-        this.lancamentos.concat(response)
-      },
-      error:(error) => {
-        alert("Erro ao carregamento dos lancamentos, favor tentar novamente")
-      }})
+      .subscribe( {
+        next:(response) => {
+          this.lancamentos = response
+        },
+        error:(error) => {
+          alert("Nao foi possível carregar os lançamentos")
+        }
+      })
   }
 
   CadastraLancamento(): any{
@@ -57,16 +62,15 @@ export class HomeComponent{
 
     this.homeService.CadastraLancamento(this.lancamentoCadastro)
       .subscribe({
-      next:(response) =>{
-        this.CarregarLancamentos()
-      },
-      error:(error) =>{
-        alert("Erro no cadastro do lancamento, tente novamente")
-      }})
+        next:(response) => {
+          this.CarregarLancamentos()
+        },
+        error:(error) => {
+          alert("Erro no cadastro do lancamento, tente novamente")
+        }})
   }
 
   Sair(): any{
-    localStorage.clear()
-    this.router.navigate(["login"])
+    sessionStorage.clear()
   }
 }
