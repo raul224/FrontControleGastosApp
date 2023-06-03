@@ -22,7 +22,7 @@ export class FlowPreviewComponent {
     }
 
   consultarLancamentos(): any{
-    this.dataRange.UsuarioId = this.usuario.Id
+    this.dataRange.usuarioId = this.usuario.id
 
     this.homeService.GetLancamentosAnteriores(this.dataRange)
       .subscribe({

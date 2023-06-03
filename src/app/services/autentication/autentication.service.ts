@@ -22,7 +22,6 @@ export class AutenticationService {
   }
 
   isUserAutenticated(): string{
-    console.log(sessionStorage.getItem("usuario"))
     return <string>sessionStorage.getItem("usuario")
   }
 }

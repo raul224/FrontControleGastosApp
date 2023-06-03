@@ -1,5 +1,5 @@
 export class dataRangeModel {
-  DataInicial: string = ""
-  DataFinal: string = ""
-  UsuarioId: string = ""
+  dataInicial: string = ""
+  dataFinal: string = ""
+  usuarioId: string = ""
 }

@@ -27,8 +27,8 @@ export class LoginComponent {
     if(this.loginForm.valid){
       var email = this.loginForm.value.email
       var password = this.loginForm.value.password
-      this.loginModel.Email = email || ""
-      this.loginModel.Password = password || ""
+      this.loginModel.email = email || ""
+      this.loginModel.password = password || ""
 
       this.autenticationService
         .autenticationRequest(this.loginModel)

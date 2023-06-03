@@ -7,7 +7,7 @@
             <span class="p-inputgroup-addon">
               <i class="pi pi-calendar"></i>
             </span>
-            <input [(ngModel)]="dataRange.DataInicial" pInputText id="dataInicio" type="date" placeholder="Data inicio"/>
+            <input [(ngModel)]="dataRange.dataInicial" pInputText id="dataInicio" type="date" placeholder="Data inicio"/>
           </div>
         </div>
         <div class="col-12">
@@ -15,11 +15,11 @@
             <span class="p-inputgroup-addon">
               <i class="pi pi-calendar"></i>
             </span>
-            <input [(ngModel)]="dataRange.DataFinal" pInputText id="dataFim" type="date" placeholder="Data fim"/>
+            <input [(ngModel)]="dataRange.dataFinal" pInputText id="dataFim" type="date" placeholder="Data fim"/>
           </div>
         </div>
         <div class="col-6">
-          <p-button pRipple label="Consultar" (click)="consultarLancamentos()" class="w-full border-round"></p-button>
+          <p-button label="Consultar" (click)="consultarLancamentos()" class="w-full border-round"></p-button>
         </div>
       </div>
     </p-card>

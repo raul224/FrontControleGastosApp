@@ -1,14 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HomeService} from "../../services/home/home.service";
-import {Router} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {FlowPreviewComponent} from "../DialogComponents/consulta-anterior/flow-preview.component";
-import { flowCadastroModel } from "../../models/flowCadastroModel";
+import { flowCreationModel } from "../../models/flowCreationModel";
 import { userModel } from "../../models/userModel";
 import { flowModel } from "../../models/flowModel";
-import {tap} from "rxjs";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import {resolve} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-home',
@@ -18,18 +14,19 @@ import {resolve} from "@angular/compiler-cli";
 })
 export class HomeComponent implements OnInit{
   logado: boolean = false;
-  lancamentoCadastro: flowCadastroModel = new flowCadastroModel();
+  flowCreationModel: flowCreationModel = new flowCreationModel();
   user: userModel = new userModel();
-  lancamentos: flowModel[] = []
+  flows: flowModel[] = []
   ref: DynamicDialogRef | undefined;
   constructor(
   private homeService: HomeService,
   public dialogService: DialogService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.user = JSON.parse(<string>sessionStorage.getItem("usuario"))
     this.CarregarLancamentos()
   }
+
 
   ConsultaAnteriorDialog(){
     this.ref = this.dialogService.open(FlowPreviewComponent, {
@@ -45,11 +42,10 @@ export class HomeComponent implements OnInit{
   }
 
   private CarregarLancamentos(): any{
-    console.log(this.user.Id)
-    this.homeService.GetLancamentos(this.user.Id)
+    this.homeService.GetLancamentos(this.user.id)
       .subscribe( {
         next:(response) => {
-          this.lancamentos = response
+          this.flows = response
         },
         error:(error) => {
           alert("Nao foi possível carregar os lançamentos")
@@ -58,9 +54,9 @@ export class HomeComponent implements OnInit{
   }
 
   CadastraLancamento(): any{
-    this.lancamentoCadastro.UsuarioId = this.user.Id
+    this.flowCreationModel.userId = this.user.id
 
-    this.homeService.CadastraLancamento(this.lancamentoCadastro)
+    this.homeService.CadastraLancamento(this.flowCreationModel)
       .subscribe({
         next:(response) => {
           this.CarregarLancamentos()

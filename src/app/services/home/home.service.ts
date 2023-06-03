@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { dataRangeModel } from "../../models/dataRangeModel";
 import { flowModel } from "../../models/flowModel";
-import { flowCadastroModel } from "../../models/flowCadastroModel";
+import { flowCreationModel } from "../../models/flowCreationModel";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class HomeService {
     return this.httpClient.get<flowModel[]>(this.url + "?userId=" + id)
   }
 
-  CadastraLancamento(flowCadastro: flowCadastroModel): Observable<any>{
+  CadastraLancamento(flowCadastro: flowCreationModel): Observable<any>{
     return this.httpClient.post(this.url, flowCadastro)
   }
 }

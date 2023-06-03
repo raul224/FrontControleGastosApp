@@ -26,10 +26,10 @@ export class RegisterComponent {
 
   submitRegister(): void{
     if(this.registerForm.valid){
-      this.registerModel.Email = this.registerForm.value.email || ""
-      this.registerModel.Name = this.registerForm.value.name || ""
-      this.registerModel.Password = this.registerForm.value.password || ""
-      this.registerModel.PasswordValidation = this.registerForm.value.passwordValidation || ""
+      this.registerModel.email = this.registerForm.value.email || ""
+      this.registerModel.name = this.registerForm.value.name || ""
+      this.registerModel.password = this.registerForm.value.password || ""
+      this.registerModel.passwordValidation = this.registerForm.value.passwordValidation || ""
 
       this.autenticationService.registerRequest(this.registerModel)
         .subscribe( {

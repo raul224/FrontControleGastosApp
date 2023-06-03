@@ -1,6 +1,6 @@
 export class RegisterModel{
-  Email: string = ""
-  Name: string = ""
-  Password: string = ""
-  PasswordValidation: string = ""
+  email: string = ""
+  name: string = ""
+  password: string = ""
+  passwordValidation: string = ""
 }

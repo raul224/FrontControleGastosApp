@@ -1,5 +1,5 @@
 export class userModel {
-  Id: string = ""
-  Name: string = ""
-  Balance: number = 0
+  id: string = ""
+  name: string = ""
+  balance: number = 0
 }

@@ -32,7 +32,7 @@
             <span class="p-inputgroup-addon">
               <i class="pi pi-list"></i>
             </span>
-              <input [(ngModel)]="lancamentoCadastro.Descricao" pInputText id="descricao" type="text" placeholder="Descricao"/>
+              <input [(ngModel)]="flowCreationModel.description" pInputText id="descricao" type="text" placeholder="Descricao"/>
             </div>
           </div>
           <div class="col-12">
@@ -40,7 +40,7 @@
             <span class="p-inputgroup-addon">
               <i class="pi pi-money-bill"></i>
             </span>
-              <input [(ngModel)]="lancamentoCadastro.ValorLancamento" pInputText id="valor" type="number" placeholder="Valor"/>
+              <input [(ngModel)]="flowCreationModel.value" pInputText id="valor" type="number" placeholder="Valor"/>
             </div>
           </div>
           <div class="col-12">
@@ -48,7 +48,7 @@
             <span class="p-inputgroup-addon">
               <i class="pi pi-calendar"></i>
             </span>
-              <input [(ngModel)]="lancamentoCadastro.DataLancamento" pInputText id="date" type="date" placeholder="Date"/>
+              <input [(ngModel)]="flowCreationModel.date" pInputText id="date" type="date" placeholder="Date"/>
             </div>
           </div>
           <div class="col-6">
@@ -60,12 +60,12 @@
       </div>
     </p-card>
   </div>
-  <div class="col-12 sm:col-6 md:col-4" *ngFor="let lancamento of lancamentos">
-    <p-card header="{{lancamento.Descricao}}">
+  <div class="col-12 sm:col-6 md:col-4" *ngFor="let flow of flows">
+    <p-card header="{{flow.description}}">
       <div class="grid">
         <div class="col 6">
-          <p class="m-0">{{lancamento.ValorLancamento}}</p>
-          <p class="m-0">{{lancamento.DataLancamento}}</p>
+          <p class="m-0">{{flow.value}}</p>
+          <p class="m-0">{{flow.date}}</p>
         </div>
       </div>
     </p-card>
