@@ -22,12 +22,21 @@ export class FlowPreviewComponent {
     }
 
   consultarLancamentos(): any{
-    this.dataRange.usuarioId = this.usuario.id
+    this.dataRange.userId = this.usuario.id
 
     this.homeService.GetLancamentosAnteriores(this.dataRange)
       .subscribe({
       next:(response) => {
-        this.ref.close()
+        const file = new Blob([response])
+        const blob = window.URL.createObjectURL(file);
+        const link = document.createElement('a')
+        link.href = blob
+        link.download = 'lancamentos.csv'
+
+        link.click()
+
+        window.URL.revokeObjectURL(blob)
+        link.remove()
       },
       error:(error) => {
         alert("Erro na consulta, tente novamente")

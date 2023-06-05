@@ -59,13 +59,11 @@
         </div>
       </div>
     </p-card>
-  </div>
-  <div class="col-12 sm:col-6 md:col-4" *ngFor="let flow of flows">
-    <p-card header="{{flow.description}}">
+    <p-card header="{{flow.description}}" *ngFor="let flow of flows" style="padding: 5px">
       <div class="grid">
         <div class="col 6">
-          <p class="m-0">{{flow.value}}</p>
-          <p class="m-0">{{flow.date}}</p>
+          <p class="m-0">Valor: {{flow.value}}</p>
+          <p class="m-0">Data: {{flow.date}}</p>
         </div>
       </div>
     </p-card>

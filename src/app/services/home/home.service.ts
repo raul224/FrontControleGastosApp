@@ -14,7 +14,7 @@ export class HomeService {
   constructor(private httpClient: HttpClient) { }
 
   GetLancamentosAnteriores(dataRangeModel: dataRangeModel): Observable<any>{
-    return this.httpClient.post(this.url + "/Preview", dataRangeModel)
+    return this.httpClient.post(this.url + "/Preview", dataRangeModel, {responseType: 'blob'})
   }
 
   GetLancamentos(id: string): Observable<flowModel[]>{

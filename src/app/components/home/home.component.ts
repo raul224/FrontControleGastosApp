@@ -5,6 +5,7 @@ import {FlowPreviewComponent} from "../DialogComponents/consulta-anterior/flow-p
 import { flowCreationModel } from "../../models/flowCreationModel";
 import { userModel } from "../../models/userModel";
 import { flowModel } from "../../models/flowModel";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -20,13 +21,16 @@ export class HomeComponent implements OnInit{
   ref: DynamicDialogRef | undefined;
   constructor(
   private homeService: HomeService,
-  public dialogService: DialogService) {}
+  private dialogService: DialogService,
+  private  router: Router) {}
 
   ngOnInit() {
     this.user = JSON.parse(<string>sessionStorage.getItem("usuario"))
-    this.CarregarLancamentos()
+    if(this.user){
+      this.CarregarLancamentos()
+      this.logado = true
+    }
   }
-
 
   ConsultaAnteriorDialog(){
     this.ref = this.dialogService.open(FlowPreviewComponent, {
@@ -68,5 +72,6 @@ export class HomeComponent implements OnInit{
 
   Sair(): any{
     sessionStorage.clear()
+    this.router.navigate(["/login"])
   }
 }
