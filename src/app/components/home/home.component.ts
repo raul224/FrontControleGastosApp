@@ -70,6 +70,18 @@ export class HomeComponent implements OnInit{
         }})
   }
 
+  DeletarLancamento(id: string): any{
+    this.homeService.DeletarLancamento(id)
+      .subscribe({
+        next:(response) => {
+          this.CarregarLancamentos()
+        },
+        error:(error) => {
+          alert("Não foi possível excluir esse lancamento")
+        }
+      })
+  }
+
   Sair(): any{
     sessionStorage.clear()
     this.router.navigate(["/login"])

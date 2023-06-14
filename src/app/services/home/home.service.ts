@@ -24,4 +24,8 @@ export class HomeService {
   CadastraLancamento(flowCadastro: flowCreationModel): Observable<any>{
     return this.httpClient.post(this.url, flowCadastro)
   }
+
+  DeletarLancamento(id : string) : Observable<any>{
+    return this.httpClient.delete(this.url + "/Delete" + "?id=" + id)
+  }
 }

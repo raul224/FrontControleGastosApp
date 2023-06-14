@@ -59,11 +59,14 @@
         </div>
       </div>
     </p-card>
-    <p-card header="{{flow.description}}" *ngFor="let flow of flows" style="padding: 5px">
+    <p-card header="{{flow.description}}" *ngFor="let flow of flows" ngClass="flowCard">
       <div class="grid">
-        <div class="col 6">
+        <div class="col-6">
           <p class="m-0">Valor: {{flow.value}}</p>
-          <p class="m-0">Data: {{flow.date}}</p>
+          <p class="m-0">Data: {{flow.date.getDate()}}</p>
+        </div>
+        <div class="col-6" style="text-align: right;">
+          <p-button icon="pi pi-trash" class="w-full border-round>" (click)="DeletarLancamento(flow.id)"></p-button>
         </div>
       </div>
     </p-card>
