@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import {BrowserAnimationsModule, provideAnimations} from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +29,8 @@ import { FlowPreviewComponent } from './components/DialogComponents/consulta-ant
     ButtonModule,
     InputTextModule,
     MenubarModule,
-    ToolbarModule
+    ToolbarModule,
+    DropdownModule
   ],
   declarations: [
     AppComponent,

@@ -10,6 +10,9 @@
         <a>Consultar lançamentos</a>
       </p-button>
     </span>
+    <span>
+      {{user.name}} seu saldo é de {{user.balance}}
+    </span>
   </div>
   <div class="p-toolbar-group-end">
     <span *ngIf="logado">
@@ -51,6 +54,9 @@
               <input [(ngModel)]="flowCreationModel.date" pInputText id="date" type="date" placeholder="Date"/>
             </div>
           </div>
+          <div class="col-12">
+            <p-dropdown [options]="flowTypeRecord" [(ngModel)]="selectedFlow"></p-dropdown>
+          </div>
           <div class="col-6">
             <p-button pRipple label="Cadastrar" icon="pi pi-plus"
             (click)="CadastraLancamento()" class="w-full border-round">
@@ -63,7 +69,8 @@
       <div class="grid">
         <div class="col-6">
           <p class="m-0">Valor: {{flow.value}}</p>
-          <p class="m-0">Data: {{flow.date.getDate()}}</p>
+          <p class="m-0">Data: {{flow.date}}</p>
+          <p class="m-0">Tipo: {{flow.flowType}}</p>
         </div>
         <div class="col-6" style="text-align: right;">
           <p-button icon="pi pi-trash" class="w-full border-round>" (click)="DeletarLancamento(flow.id)"></p-button>

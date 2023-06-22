@@ -21,6 +21,10 @@ export class AutenticationService {
     return this.httpClient.post(this.url + '/register', registerModel);
   }
 
+  getUpdatedUser(id: string) : Observable<any>{
+    return this.httpClient.get(this.url + "/updated?userId=" + id);
+  }
+
   isUserAutenticated(): string{
     return <string>sessionStorage.getItem("usuario")
   }
